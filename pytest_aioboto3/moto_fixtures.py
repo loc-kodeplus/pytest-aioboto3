@@ -99,7 +99,7 @@ def moto_services() -> Iterator[Mapping[str, str]]:
     processes = []
     service_to_url: dict[str, str] = {}
 
-    services_to_start = ("s3",)
+    services_to_start = ("s3", "sns")
     """
 
     1. Add a new entry to the 'extras' section in pyproject.toml for types-aiobotocore, moto and boto3-stubs like 'dynamodb' or 'ec2'
@@ -122,7 +122,7 @@ def moto_services() -> Iterator[Mapping[str, str]]:
             service_to_url[service] = url
 
     else:
-        for service in ("s3",):
+        for service in services_to_start:
             url = _start_moto(service_name=service)
             service_to_url[service] = url
 
